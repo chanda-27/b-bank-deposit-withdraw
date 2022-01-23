@@ -19,20 +19,23 @@ document.getElementById('deposit-button').addEventListener('click', function () 
 
 document.getElementById('widthdraw-button').addEventListener('click', function () {
   const withdrawAmount = document.getElementById('widthdraw-amount');
-  // console.log(withdrawAmount.value);
   const withdrawText = withdrawAmount.value;
   const withdrawNumber = parseFloat(withdrawText);
   const withdrawTotal = document.getElementById('withdraw-total');
   const withdrawTotalText = withdrawTotal.innerText;
   const withdrawTotalNumber = parseFloat(withdrawTotalText);
-  const newWithdrawTotal = withdrawTotalNumber + withdrawNumber;
-  withdrawTotal.innerText = newWithdrawTotal;
 
   const balanceTotal = document.getElementById('balance-total');
   const balanceTotalText = balanceTotal.innerText;
   const balanceTotalNumber = parseFloat(balanceTotalText);
-  const balanceSubstract = balanceTotalNumber - withdrawNumber;
-  balanceTotal.innerText = balanceSubstract;
+  if (withdrawNumber > balanceTotalNumber) {
+    alert("Insufficiant balance!")
+  } else {
+    const newWithdrawTotal = withdrawTotalNumber + withdrawNumber;
+    withdrawTotal.innerText = newWithdrawTotal;
+    const balanceSubstract = balanceTotalNumber - withdrawNumber;
+    balanceTotal.innerText = balanceSubstract;
+  }
   withdrawAmount.value = '';
 })
 
